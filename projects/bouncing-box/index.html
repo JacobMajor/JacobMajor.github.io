@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
+	<!-- BEGIN CSS -->
+	<style>
+		/* TODO 1 */
+		[class="box"] {
+			display: block;
+			position: absolute;
+			width: 70px;
+			height: 70px;
+			top: 100px;
+			left: 0px;
+			background-color: white;
+			font-family: fantasy;
+			color: white;
+			font-size: 200%;
+			text-align: center;
+			background-image: url("https://avatars0.githubusercontent.com/u/39913311?s=460&v=4"), url("paper.gif");
+			background-size: 100%;
+    		background-color: white;
+    		border-radius:0px;
+    		border-style:inset;
+    		border-color:red green blue yellow;
+    		border-width: 10px 10px 10px 10px;
+		}
+		body {
+			background-image: url("https://cdn3-7.cdn.schoology.com/system/files/imagecache/lightbox_preview/attachments/files/library/201806/howdt_5b17e33deda52(.png"), url("EPICC");
+    		background-size: 100%;
+    		background-position: center top;
+    		background-repeat: no-repeat;
+    		background-attachment:fixed;
+    		background-color: red;
+			transition: background-color 4s;
+		}
+		
+	</style>
+
+</head>
+<body class="board">
+	<!-- HTML for the box -->
+	<div class="box">?</div>
+
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		(function(){
+			'use strict'
+			/* global &*/
+
+			// Variable declarations
+			var box;
+			var boardWidth;
+			var update;
+			var handleBoxClick;
+
+			// jQuery stuff setup for you
+			box = $('.box');
+			boardWidth = $('.board').width();
+
+			// TODO 2
+			var position;
+			var points;
+			var speed;
+			var direction;
+			
+			direction = 1;
+			position = 0;
+			points = 0;
+			speed = 10;
+
+			box.css('left', position);
+			box.text(points);
+			
+			function update() {
+				    position = position + (speed * direction);
+					if(position > boardWidth) {
+					 direction = -1;
+					}
+					if(position <0) {
+						direction = 1;
+					}
+				box.css('left', position);
+				box.text(points);
+			};
+
+			function handleBoxClick() {
+				  speed = speed + 3;
+				  position = 0;
+				  points = points + 1;
+				
+			};
+
+			//this calls update every 50 milliseconds
+			setInterval(update, 50);
+			// this calls the handle handleBoxClick function every time the box is clicked on
+			box.on('click', handleBoxClick);
+		})();
+	</script>
+	<script type="text/javascript">
+		var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+
+		var i = 1;
+
+		window.setInterval(function(){
+			document.body.style.backgroundColor = colors[i];
+			i++;
+			if (i === colors.length){
+				i=0;
+			}
+		}, 5000);
+	</script>	
+</body>
+</html>
